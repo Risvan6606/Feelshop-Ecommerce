@@ -1,0 +1,52 @@
+<%- include('../partials/adminHeader.ejs') %>
+
+<div class="col-sm-12 col-xl-10">
+    <form class="bg-light rounded h-100 p-4" method="post" >
+        <%couponData.forEach((data)=>{%>
+        <h6 class="mb-4">COUPON EDIT</h6>
+    
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput"
+                placeholder="" name="code" value="<%=data.code%>">
+            <label for="floatingInput">Code</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" id="floatingPassword"
+                placeholder="quantity" name="date" value="<%=data.expiryDate%>">
+            <label for="floatingPassword">Expiry Date</label>
+        </div>
+        <div class="form-floating mb-3">
+            <select  name="discoundType" class="form-select" id="floatingSelect"
+                aria-label="Floating label select example" >
+                <option selected ><%=data.discoundType%></option>
+                <option >persentage</option>
+                <option >fixed</option>
+            </select>
+            <label for="floatingSelect">Discount type</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="quantity" name="discountAmount" value="<%=data.discountAmount%>">
+            <label for="floatingPassword">Enter Discount Amount</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="quantity" name="maxCartAmount" value="<%=data.maxCartAmount%>">
+            <label for="floatingPassword">Enter cart Amount</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="quantity" name="maxDicountAmount" value="<%=data.maxDicountAmount%>">
+            <label for="floatingPassword">Enter Max discount amount</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="quantity" name="maxCount" value="<%=data.maxCount%>">
+            <label for="floatingPassword">Enter the count of coupon</label>
+        </div>
+        <input type="text" name="id" value="<%=data.id%>" hidden="true">
+        <%})%>
+        <button  class="btn btn-primary btn-lg btn-block"style="position: relative;left: 18em;" >Submit</button>
+    </form>
+</div>
+<%- include('../partials/adminFooter.ejs') %>

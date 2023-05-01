@@ -1,0 +1,50 @@
+<%- include('../partials/adminHeader.ejs') %>
+            <!-- Table Start -->
+            <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Coupon Code</th>
+                    <th scope="col">discount Amount</th>
+                    <th scope="col">Expiry Date</th>
+                    <th scope="col">Max Cart Amount</th>
+                    <th scope="col">Max Discount</th>
+                    <th scope="col">Count of Coupon</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                   
+                  <tr>
+                    <%couponData.forEach((data)=>{%>
+                    <th scope="row"><%=data.code%></th>
+                    <td><%=data.discountAmount%>(<%=data.discoundType%>)</td>
+                    <td><%=data.expiryDate.toISOString().substring(0,10)%></td>
+                    <td><%=data.maxCartAmount%></td>
+                    <td><%=data.maxDicountAmount%></td>
+                    <td><%=data.maxCount%></td>
+                    <td><a href="/admin/couponedit?id=<%=data._id%>"><button class="btn btn-sm btn-info m-2" >Edit</button></a>
+                        <button class="btn btn-sm btn-danger m-2" onclick="remove('<%=data._id%>') " >Remove</button></td>
+                  </tr>
+                <%})%>
+                </tbody>
+              </table>
+              <script>
+                function remove(id){
+                    console.log(id)
+                    $.ajax({
+                        url:'/admin/deleteCoupon',
+                        method:'post',
+                        data:{
+                            id:id
+                        }
+                    })
+                    .done((data)=>{
+            if(data.success){
+                location.reload()
+            }
+        })
+                   
+       }
+              </script>
+            <!-- Table End -->
+ <%- include('../partials/adminFooter.ejs') %>

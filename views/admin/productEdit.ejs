@@ -1,0 +1,98 @@
+<%- include('../partials/adminHeader.ejs') %>
+<div class="col-sm-12 col-xl-6">
+    <form class="bg-light rounded h-100 p-4" method="post" enctype="multipart/form-data">
+        <h6 class="mb-4">Edit Product</h6>
+        <%if(typeof message!=='undefined'){%>
+            <p style="color: red;"><%=message%></p>
+            <%}%>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput"
+                placeholder="" name="name" value="<%=name%>">
+            
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="" name="price" value="<%=price%>">
+           
+        </div>
+        <div class="form-floating mb-3">
+            <div class="d-flex flex-coloum " style="justify-content: space-between; ">  
+            <%images.image.forEach((value,index)=>{%>
+        <div class="border border-dark border-2" >
+            <img  height="100px"  src="/admin/productImage/<%=images.image[index]%>" alt="" width="100px" >
+            <div style="padding-left: 1em;">
+                <button type="button" class=" btn-danger btn-sm" onclick="deleteImage('<%=index%>','<%=images._id%>')">Remove</button>
+            </div>
+        </div>
+        <%})%>
+          </div>
+            <input type="file" class="form-control" id="floatingPassword"
+                placeholder="" name="image" value="" multiple  accept="image/*">
+           
+        </div>
+        <div class="form-floatin">
+            <input class="form-control" id="floatingTextar" style="height: 100px;" name="discription" value="<%=discrip%>">
+
+           
+            <p style="color: brown;"></p>
+        </div>
+        <div class="form-floating mb-3">
+            <select  name="catogory" class="form-select" id="floatingSelect"
+                aria-label="Floating label select example" >
+                <%product.forEach((products)=>{%>
+                <option selected ><%=products.name%></option>
+                <%})%>
+                <option ></option>
+                <!-- <option value="2">Two</option>
+                <option value="3">Three</option> -->
+            </select>
+            <label for="floatingSelect">add catogory</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="" name="qty" value="<%=quantity%>">
+          
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="" name="discount" value="<%=discount%>">
+           
+        </div>
+        <input type="text" name="ID" hidden="true" value="<%=Id%>">
+        <button class="btn btn-info" style="position: relative;left: 12em;" >Submit</button>
+        
+    </form>
+</div>
+
+<script>
+    function deleteImage(index,id){
+        console.log(index)
+        Swal.fire({
+            title:'Delete are you sure!',
+            text:"Do you want to delete this image",
+            icon:"warning",
+            showCancelButton:'True',
+            confirmButtonColor:"#3085d6",
+            CancelButtonColor:'#d33',
+            confirmButtonText:'Yes'
+        }).then((result)=>{
+            if(result.isConfirmed){
+        $.ajax({
+            url:'/admin/delteImage',
+            method:'post',
+            encoded:true,
+            data:{
+                index:index,
+                id:id
+            },
+            success:(response)=>{
+        if(response.success){
+            location.reload()
+        }
+    }
+        
+        })
+    }})
+}
+</script>
+<%- include('../partials/adminFooter.ejs') %>

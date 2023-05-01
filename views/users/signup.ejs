@@ -1,0 +1,19 @@
+<%- include('../partials/header.ejs') %>
+<div class="page-container">
+            
+    <form action="" method="post" class="login">
+    <h3 class="heading">Sign Up</h3>
+        <input type="text" name="name" class="Name" placeholder="Name" >
+        <input type="number" name="mobile" class="Tele" placeholder="Mobile number"required>
+        <input type="email" name="email" class="Email" placeholder="Email" required>
+        <input type="password" name="password" class="Address" placeholder="password">
+        <button type="submit" value="Add" name="submit"  class="btn btn-success btn-sm"> submit </button>
+        <p >alreadey sign in ? <a href="login" style="color: #fff;">login</a></p>
+        <%if(typeof message!=='undefined'){%>
+            <p style="color: red;" class="validation"><%= message %></p>
+        <%}%>
+    </form>
+   
+    
+</div>
+<%- include('../partials/footer.ejs') %>

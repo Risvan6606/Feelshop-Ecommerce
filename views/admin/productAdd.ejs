@@ -1,0 +1,57 @@
+<%- include('../partials/adminHeader.ejs') %>
+<div class="col-sm-12 col-xl-6">
+    <form class="bg-light rounded h-100 p-4" method="post" enctype="multipart/form-data">
+        <h6 class="mb-4">Add Product</h6>
+        <%if(typeof message!=='undefined'){%>
+            <p style="color: red;"><%=message%></p>
+            <%}%>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput"
+                placeholder="name@example.com" name="name">
+            <label for="floatingInput">Product name</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="price" name="price">
+            <label for="floatingPassword">Price</label> 
+        </div>
+        <div class="form-floating mb-3">
+            <input type="file" class="form-control" id="floatingPassword"
+                placeholder="Password" name="image" multiple accept="image/*">
+            <label for="floatingPassword">Product image</label>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Write description"
+                id="floatingTextarea" style="height: 150px;" name="discription"></textarea>
+            <label for="floatingTextarea">description</label>
+            <%if(typeof des!=='undefined'){%>
+            <p style="color: brown;"><%=des%></p>
+           <% }%>
+        </div>
+        <div class="form-floating mb-3">
+            <select  name="catogory" class="form-select" id="floatingSelect"
+                aria-label="Floating label select example" >
+                <option selected >select catogorys</option>
+                <%for(let i=0;i<catogoryData.length;i++){%>
+                <option ><%= catogoryData[i].name %></option>
+                <%}%>
+                <!-- <option value="2">Two</option>
+                <option value="3">Three</option> -->
+            </select>
+            <label for="floatingSelect">add catogory</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="quantity" name="qty">
+            <label for="floatingPassword">quantity</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="price" name="discount">
+            <label for="floatingPassword">Enter discount</label> 
+        </div>
+        <button class="btn btn-info" style="position: relative;left: 12em;" >Submit</button>
+        
+    </form>
+</div>
+<%- include('../partials/adminFooter.ejs') %>

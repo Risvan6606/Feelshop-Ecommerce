@@ -1,0 +1,49 @@
+<%- include('../partials/adminHeader.ejs') %>
+<div class="col-sm-12 col-xl-10">
+    <form class="bg-light rounded h-100 p-4" method="post" >
+        <h6 class="mb-4">Add coupon</h6>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput"
+                placeholder="name@example.com" name="code">
+            <label for="floatingInput">Enter coupon code</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" id="floatingPassword"
+                placeholder="quantity" name="date" >
+            <label for="floatingPassword">Expiry Date</label>
+        </div>
+        <div class="form-floating mb-3">
+            <select  name="discoundType" class="form-select" id="floatingSelect"
+                aria-label="Floating label select example" >
+                <option selected >fixed</option>
+                <option >persentage</option>
+            </select>
+            <label for="floatingSelect">Discount type</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="quantity" name="discountAmount">
+            <label for="floatingPassword">Enter Discount Amount</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="quantity" name="maxCartAmount">
+            <label for="floatingPassword">Enter cart Amount</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="quantity" name="maxDicountAmount">
+            <label for="floatingPassword">Enter Max discount amount</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword"
+                placeholder="quantity" name="maxCount">
+            <label for="floatingPassword">Enter the count of coupon</label>
+        </div>
+        <%if(typeof message!=='undefined'){%>
+        <p style="color: rgb(36, 95, 9);position: relative;left:20em"><%=message%></p>
+        <%}%>
+        <button  class="btn btn-primary btn-lg btn-block"style="position: relative;left: 18em;" >Submit</button>
+    </form>
+</div>
+<%- include('../partials/adminFooter.ejs') %>

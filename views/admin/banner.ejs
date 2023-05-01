@@ -1,0 +1,46 @@
+
+<%- include('../partials/adminHeader.ejs') %>
+<div class="container-fluid pt-5 px-4">
+    <h1>Banner</h1>
+    <a href="/admin/addBanner"><button class="btn btn-outline-success">Add Banner</button></a>
+    <div class="row pt-4 g-4">
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <table class="table" id="categorytable">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Heading</th>
+                            <th scope="col">Description</th>
+                            
+                            <th scope="col">Option</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% data.forEach((value,index)=>{ %>
+                            <tr>
+                                <td><%= index+1 %></td>
+                                <td><img src="/admin/productImage/<%= value.image %>" width="288px" height="150px" alt="<%= value.image %>"></td>
+                                <td><%= value.heading %></td>
+                                <td><%= value.description %></td>
+                                <% if(value.status==false){ %>
+                                    <td><a href="/admin/unlisting?id=<%= value._id %>"><button class="btn btn-success" onclick="return showconfirm(this)">show</button></a></td>
+                            </tr>
+
+                                <% }else{ %>
+                                <td><a href="/admin/unlisting?id=<%= value._id %>"><button class="btn btn-danger" onclick="return hideconfirm(this)">hide</button></a></td>
+                                </tr>
+                                <% } %>
+                        <% })%>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Table End -->
+</div>
+<!-- Content End -->
+<%- include('../partials/adminFooter.ejs') %>

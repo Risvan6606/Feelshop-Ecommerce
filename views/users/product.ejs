@@ -1,0 +1,197 @@
+<%- include('../partials/header1.ejs') %>
+<form action="/product?value=<%= price %>&category=<%= Category %>" method="get">
+   <input type="text" name="search" placeholder="Search....?">
+   <button type="submit" class="site-btn">SEARCH</button>
+</form>
+      <section class="product_section layout_padding">
+        <div style="margin-left:1em ;">
+        <div style="position: absolute;top: 15em; text-shadow:5px 5px 10px  #4CAF50; text-decoration: none; color: red;"   id="change">
+            <a class="" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" style="text-decoration: none;"> <span class="nav-label" style="font-weight: 700;color:  #4CAF50;;">catogary<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+               <% categoryData.forEach((value,index)=>{ %>
+
+                  <li><a href="/product?category=<%= value.name %>&value=<%= price %>&search=<%= Search %>" style="text-shadow: 5px 5px 10px blue;text-decoration: none;">
+                          <%=value.name%>
+                      </a></li>
+
+                  <%}) %>
+            </ul>
+         </div>
+          <div  class="" id="">
+               <span style=" font-weight: 900; color: #4CAF50;;; text-shadow: 0px 11px 10px rgba(81,67,21,0.8);">Sort by price</span>
+               <select name="price" id="price" onchange="location ='/product?value='+value+'&category=<%= Category %>&search=<%= Search %>'" style="color: #3e8e41; ">
+                   <% if(price == "High"){ %>
+                       <option value="Low"> Low To High</option>
+                       <option value="High" selected>High To Low</option>
+                   <%} else {%>
+                       <option value="Low" selected> Low To High</option>
+                       <option value="High">High To Low</option>
+                   <%} %>
+               </select>
+         </div>
+      </div>
+         <div class="container">
+            <div>
+              
+            </div>
+            <div class="heading_container heading_center">
+               <h2>
+                  Deals of the day
+               </h2>
+            </div>
+            <div class="row">
+             
+             
+                
+              
+              <%products.forEach((product)=>{%>
+               <%let discount=product.price*product.discount/100%>   
+               
+               <div class="col-sm-6 col-md-4 col-lg-4" >
+                  <div class="box" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;">
+                     <div class="option_container">
+                        <div class="options">
+                           <a href="/productDetails?id=<%=product._id%>" class="option1">
+                          View
+                           </a>
+                              <a class="option2" onclick="addToCart('<%=product._id%>','<%=product.price-discount%>')">
+                              cart
+                               </a>
+                           <!-- <a href="" class="option2">
+                           Buy Now
+                          </a> -->
+                        </div>
+                     </div>
+                     <div class="img-box" >
+                        <img  src="/admin/productImage/<%=product.image[0]%>" alt="" style="height: 100%;width: 100%;">
+                     </div>
+                     <div class="detail-box">
+                        <h6>
+                           <%=product.name%>
+                        </h6>
+                       
+                     </div>
+                     <!-- <p>
+                        <%=product.discription%>
+                     </p> -->
+                     <% if(product.status!==true||product.quantity<=0){%>
+                        <h6 style="position: relative;right: 11%; color: red;">
+                           OUT OF STOCK
+                         </h6>
+                     <%}else{%>
+                        <h6 style="position: relative;right: 11%; color: green;">
+                           STOCK
+                         </h6>
+                     <%}%>
+                     <h5 style="position: absolute;top: 85%; color: red;"><del>
+                        ₹ <%=product.price%></del>
+                      </h5>
+                     <h6 style="position: relative;left:80%">
+                        OFF:<%=product.discount%>%
+                     </h6>
+                     <h5 style="position: relative;left:75% ;color: green;">
+                        ₹ <%=product.price-discount%>
+                     </h5>
+                     
+                  </div>
+               </div>
+              
+               <%})%>
+               
+            </div>
+           
+           
+            <!-- <div class="btn-box">
+               <a href="">
+               View All products
+               </a>
+            </div> -->
+         </div>
+      </section>
+      <div class="row">
+         <div class="col-lg-12">
+           <div class="product__pagination" style="margin-left: 48%; margin-top: 20px;margin-bottom: 2%;">
+             <% if(page > 1){ %>
+               <a href="/product?page=<%= page-1 %>&value=<%= price %>&category=<%= Category %>&search=<%= Search %>" class="btn btn-primary">&laquo; Previous</a>
+             <% } %>
+             <% for(i=0;i < totalPage; i++){ %>
+               <% if(i+1 == page){ %> 
+                 <a href="/product?page=<%= i+1 %>&value=<%= price %>&category=<%= Category %>&search=<%= Search %>" class="btn btn-primary active"><%= i+1 %></a>
+               <%} else { %>
+                 <a href="/product?page=<%= i+1 %>&value=<%= price %>&category=<%= Category %>&search=<%= Search %>" class="btn btn-primary"><%= i+1 %></a>
+               <% }%>
+             <% } %>
+             <% if(page < totalPage){ %>
+               <a href="/product?page=<%= page+1 %>&value=<%= price %>&category=<%= Category %>&search=<%= Search %>" class="btn btn-primary">Next &raquo;</a>
+             <% } %>
+           </div>
+         </div>
+       </div>
+       
+       <style>
+         form {
+  display: inline-block;
+  position: absolute;
+  left: 70%;
+  top: 6%;
+}
+
+input[type="text"] {
+  padding: 10px 40px;
+  border: none;
+  border-radius: 20px;
+  background-color: #f2f2f2;
+  font-size: 16px;
+  width: 200px;
+  border: 1px;
+}
+
+button[type="submit"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px 20px;
+  border: none;
+  background-color: #4CAF50;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+       </style> 
+   <script>
+      function addToCart(id,productPDiscount){
+         $.ajax({
+            url:'/addtoCart',
+            method:'post',
+            data:{
+               id:id,
+               productPDiscount:productPDiscount
+            },
+            success:(response)=>{
+                   if(response.success){
+                     console.log("testrs");
+                       swal.fire({
+                           position:'center',
+                           icon:'success',
+                           title:'product added to cart',
+                           showConfirmButton:false,
+                           timer:1500
+                       })
+                   }else if(response.out==true){
+                     Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'out of stock!'
+              })
+                   }
+               }
+         })
+      }
+     </script>
+      <%- include('../partials/footer1.ejs') %>
