@@ -50,7 +50,7 @@ const wishlist=async(req,res)=>{
        const wishlistData=await whishListSchema.findOne({user:session}).populate('product.productId')
        const products=wishlistData.product
        if(products.length==0){
-        res.render('cartEmpty',{session,userdata,wishlist:true})
+        res.render('cartEmpty',{session,userdata,wishlist:false})
        }else{
         res.render('Whishlist',{session,userdata,wishlistData,products})
        }
