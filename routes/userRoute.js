@@ -53,7 +53,7 @@ userRoute.post('/changeCount',cartController.changeCount)
 userRoute.get('/profile',userController.profileRender)
 // whishlist
 userRoute.post('/addtowhishlist',whishListController.addtowhishlist)
-userRoute.get('/whishlist',userAuth.divert,whishListController.wishlist)  
+userRoute.get('/whishlist',whishListController.wishlist)  
 userRoute.get('/removewish',whishListController.wishlistremove)
 userRoute.post('/whishToCart',whishListController.addTowish)
 // couponmanagement
