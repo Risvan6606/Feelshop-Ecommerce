@@ -17,9 +17,9 @@ var instance = new Razorpay({
     key_id: process.env.KeyId,
     key_secret:process.env.keySecret,
   });
-  const ejs =require('ejs')
-  const pdf=require('html-pdf')
-  const fs= require('fs')
+//   const ejs =require('ejs')
+//   const pdf=require('html-pdf')
+//   const fs= require('fs')
   const path = require('path')
 
 
@@ -632,43 +632,43 @@ const orderDetailView=async(req,res)=>{
         console.log(error.message);
     }
 }
-const orderInvoice=async(req,res)=>{
-    try {
-        const id =req.query.id
-        const orderdetails = await orderSchema.findOne({_id:id}).populate("product.productId").sort({Date:-1})
-        const orderData= orderdetails.product        
-        const data={
-            report:orderdetails,
-            data:orderData
-        }
-        const filepath =path.resolve(__dirname,'../views/users/invoicePdf.ejs')
-        const htmlstring=fs.readFileSync(filepath).toString()
-       let option={
-        format:"A3"
-       }
-       const ejsData=  ejs.render(htmlstring,data)
-       pdf.create(ejsData,option).toFile('Invoice.pdf',(err,response)=>{
-        if(err) console.log(err);
+// const orderInvoice=async(req,res)=>{
+//     try {
+//         const id =req.query.id
+//         const orderdetails = await orderSchema.findOne({_id:id}).populate("product.productId").sort({Date:-1})
+//         const orderData= orderdetails.product        
+//         const data={
+//             report:orderdetails,
+//             data:orderData
+//         }
+//         const filepath =path.resolve(__dirname,'../views/users/invoicePdf.ejs')
+//         const htmlstring=fs.readFileSync(filepath).toString()
+//        let option={
+//         format:"A3"
+//        }
+//        const ejsData=  ejs.render(htmlstring,data)
+//        pdf.create(ejsData,option).toFile('Invoice.pdf',(err,response)=>{
+//         if(err) console.log(err);
 
-      const filepath= path.resolve(__dirname,'../invoice.pdf')
-      fs.readFile(filepath,(err,file)=>{
-        if(err) {
-            console.log(err);
-            return res.status(500).send('could not download file')
-        }
-        res.setHeader('Content-Type','application/pdf')
-        res.setHeader('Content-Disposition','attatchment;filename="Purchase Invoice.pdf"')
+//       const filepath= path.resolve(__dirname,'../invoice.pdf')
+//       fs.readFile(filepath,(err,file)=>{
+//         if(err) {
+//             console.log(err);
+//             return res.status(500).send('could not download file')
+//         }
+//         res.setHeader('Content-Type','application/pdf')
+//         res.setHeader('Content-Disposition','attatchment;filename="Purchase Invoice.pdf"')
 
-        res.send(file)
+//         res.send(file)
 
-      })
-       })
+//       })
+//        })
         
-    } catch (error) {
-        console.log(error.message);
+//     } catch (error) {
+//         console.log(error.message);
         
-    }
-}
+//     }
+// }
 
 module.exports={
     indexrender,
@@ -698,6 +698,6 @@ module.exports={
     verifypayment,
     ordersuccess,
     orderDetailView,
-    orderInvoice
+    // orderInvoice
 
 }

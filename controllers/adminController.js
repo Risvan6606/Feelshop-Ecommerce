@@ -1,9 +1,9 @@
 const user=require('../model/userSchema')
 const bcrypt=require('bcrypt')
 const orderschema=require('../model/orderSchema')
-const ejs=require('ejs')
-const pdf=require('html-pdf')
-const fs=require('fs')
+// const ejs=require('ejs')
+// const pdf=require('html-pdf')
+// const fs=require('fs')
 const path=require('path')
 const userSchema = require('../model/userSchema')
 const orderSchema = require('../model/orderSchema')
@@ -210,36 +210,36 @@ const salesReports=async(req,res)=>{
 }
 
 
-const exportSales=async(req,res)=>{
-    try {
-       await orderschema.find({status:{$ne:'Cancel'}}).sort({Date:-1})
-       const data={
-        report:req.session.ordertls
-       }
-      const filePath= path.resolve(__dirname,'../views/admin/orderToPdf.ejs')
-      const htmlString=fs.readFileSync(filePath).toString()
-      let option={
-        format:"A3"
-      }
-      const ejsData=ejs.render(htmlString,data)
-      pdf.create(ejsData,option).toFile('salesReport.pdf',(err,response)=>{
-        if(err)console.log(err)
+// const exportSales=async(req,res)=>{
+//     try {
+//        await orderschema.find({status:{$ne:'Cancel'}}).sort({Date:-1})
+//        const data={
+//         report:req.session.ordertls
+//        }
+//       const filePath= path.resolve(__dirname,'../views/admin/orderToPdf.ejs')
+//       const htmlString=fs.readFileSync(filePath).toString()
+//       let option={
+//         format:"A3"
+//       }
+//       const ejsData=ejs.render(htmlString,data)
+//       pdf.create(ejsData,option).toFile('salesReport.pdf',(err,response)=>{
+//         if(err)console.log(err)
     
-      const filepath=path.resolve(__dirname,'../salesReport.pdf')
-      fs.readFile(filepath,(error,file)=>{
-        if(error){
-            console.log(error);
-            return res.status(500).send('could not download file')
-        }
-        res.setHeader('Content-Type','application/pdf')
-        res.setHeader('Content-Disposition','attatchment;filename="salesReport.pdf')
-        res.send(file)
-      })
-    })
-    }catch (error) {
-        console.log(error.message)
-    }
-}
+//       const filepath=path.resolve(__dirname,'../salesReport.pdf')
+//       fs.readFile(filepath,(error,file)=>{
+//         if(error){
+//             console.log(error);
+//             return res.status(500).send('could not download file')
+//         }
+//         res.setHeader('Content-Type','application/pdf')
+//         res.setHeader('Content-Disposition','attatchment;filename="salesReport.pdf')
+//         res.send(file)
+//       })
+//     })
+//     }catch (error) {
+//         console.log(error.message)
+//     }
+// }
 
 
 
@@ -255,7 +255,7 @@ module.exports={
     cancelorder,
     deliveryProduct,
     approvingReturn,
-    exportSales,
+    // exportSales,
     salesReports
 
 }
