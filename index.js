@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-mongoose.connect('mongodb://127.0.0.1:27017/ekart').then(()=>console.log('mongodb Connected....'))
+mongoose.connect("mongodb+srv://risvangalfan:sJVGpfUmhbCZ7nbS@cluster0.pzhy0ii.mongodb.net/feelshop").then(()=>console.log('mongodb Connected....'))
 const express=require('express')
 const app= express()
 const path =require("path")
