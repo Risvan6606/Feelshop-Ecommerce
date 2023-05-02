@@ -73,7 +73,7 @@ userRoute.get('/orderDetailview',userController.orderDetailView)
 userRoute.post('/userOrderCancel',userController.userOrderCancel)
 userRoute.post('/returnproduct',userController.orderReturn)
 
-userRoute.get('/invoice_pdf',userController.orderInvoice)
+// userRoute.get('/invoice_pdf',userController.orderInvoice)
 // userRoute.get('/ins',userController.invoice)
 
 

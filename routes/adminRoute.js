@@ -72,6 +72,6 @@ adminRoute.get('/banner',adminAuth.isLogin,bannerController.viewBanner)
 adminRoute.post('/addBanner',upload.single('image'),bannerController.insertBanner)
 adminRoute.get('/unlisting',adminAuth.isLogin,bannerController.unlistBanner)
 adminRoute.get('/salesReport',adminAuth.isLogin,adminController.salesReports)
-adminRoute.get('/exportToPdf',adminAuth.isLogin,adminController.exportSales)
+// adminRoute.get('/exportToPdf',adminAuth.isLogin,adminController.exportSales)
 
 module.exports=adminRoute
