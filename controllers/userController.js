@@ -369,7 +369,12 @@ const checkout=async(req,res)=>{
         const products=cartData.products
         const addressdata=await addressSchema.findOne({userId:req.session.userId})
        const walletamount= userdata.wallet
+      if(addressdata==null){
+        res.redirect('/addAddress')
+      }else{
         res.render('checkOut',{session,walletamount,addressdata,products})
+      }
+       
         }else{
         const session=req.session.userId
         const userdata=await user.findOne({_id:session})

@@ -154,7 +154,7 @@
        },
        success:(response)=>{
         if(response.codsuccess==true){
-          location.href="/  "
+          location.href="/ordersuccess"
         }else{
           console.log(response.order);
           razorpayPayment(response.order)

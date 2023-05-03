@@ -43,7 +43,7 @@ const addressPost=async(req,res)=>{
             })
             if(cartData){
                const cartdata=await cartData.save()
-                res.render('checkOut',{session,userdata,addressdata})
+                res.redirect('/checkout')
                }
         }
     } catch (error) {
