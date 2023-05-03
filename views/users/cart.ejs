@@ -79,7 +79,7 @@
     console.log(id)
     $.ajax({
       url:'/changeCount',
-      method:'post',
+      method:'patch',
       data:{
         id:id,
         count:count
@@ -102,7 +102,7 @@
             if(result.isConfirmed){
     $.ajax({
       url:'/cartprDlt',
-      method:'post',
+      method:'delete',
       data:{
         session:session,
         productId:productId

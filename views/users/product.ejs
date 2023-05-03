@@ -168,7 +168,7 @@ button[type="submit"]:hover {
       function addToCart(id,productPDiscount){
          $.ajax({
             url:'/addtoCart',
-            method:'post',
+            method:'patch',
             data:{
                id:id,
                productPDiscount:productPDiscount

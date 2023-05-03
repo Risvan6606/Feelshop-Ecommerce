@@ -43,7 +43,7 @@
                      <div class="p-list">
                         <span> M.R.P. : <i class="fa fa-inr"></i> <del> <%=products.price%> </del> </span>
                         <span class="price">
-                           <%=products.price-discount%>
+                           <%=Math.round(products.price-discount)%>.00
                         </span>
                      </div>
                      <%if(products.quantity< 10){%>
@@ -88,7 +88,7 @@
          console.log(id)
          $.ajax({
             url: '/addtoCart',
-            method: 'post',
+            method: 'patch',
             data: {
                id: id,
                productPDiscount:productPDiscount
@@ -113,7 +113,7 @@
          console.log(id)
          $.ajax({
             url: '/addtowhishlist',
-            method: 'post',
+            method: 'patch',
             data: {
                id: id
             },

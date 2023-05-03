@@ -29,50 +29,37 @@ userRoute.get('/sign',userAuth.isLogout,userController.signup)
 userRoute.post('/sign',userController.insertUser)
 userRoute.get('/otpVerification',userController.otp)
 userRoute.post('/otpVerification',userController.postotp)
-
 userRoute.get('/forgetPassword',userController.Loadforget)
 userRoute.post('/forgetPassword',userController.Forgetpost)
 userRoute.get('/forgetotp',userController.forgetotp)
 userRoute.post('/forgetotp',userController.Verifyforget)
 userRoute.get('/otpresend',userController.resendotp)
-
 userRoute.get('/login',userAuth.isLogout,userController.login)
 userRoute.post('/login',userController.verifyuser)
-
 userRoute.get('/logout',userController.userLogout)
 userRoute.get('/conformPass',userController.ConformPass)
 userRoute.post('/conformPass',userController.newpass)
-// catogorywise
-// userRoute.get('/catogarytype',userController.catogaryVice)
-// cart
-userRoute.post('/addtoCart',cartController.addToCart)
+userRoute.patch('/addtoCart',cartController.addToCart)
 userRoute.get('/cart',cartController.cartrender)
-userRoute.post('/cartprDlt',cartController.cartprDlt)
-userRoute.post('/changeCount',cartController.changeCount)
-
+userRoute.delete('/cartprDlt',cartController.cartprDlt)
+userRoute.patch('/changeCount',cartController.changeCount)
 userRoute.get('/profile',userController.profileRender)
-// whishlist
-userRoute.post('/addtowhishlist',whishListController.addtowhishlist)
+userRoute.patch('/addtowhishlist',whishListController.addtowhishlist)
 userRoute.get('/whishlist',whishListController.wishlist)  
 userRoute.get('/removewish',whishListController.wishlistremove)
-userRoute.post('/whishToCart',whishListController.addTowish)
-// couponmanagement
+userRoute.patch('/whishToCart',whishListController.addTowish)
 userRoute.post('/applyCoupon',couponController.applyCoupon)
 userRoute.get('/checkout',userAuth.isLogin,userController.checkout)
 userRoute.post('/placeorder',userController.orderPlace)
 userRoute.post ('/verifypayment',userController.verifypayment)
 userRoute.get("/ordersuccess",userController.ordersuccess)
-
 userRoute.get('/addAddress',userAuth.isLogin,addressControll.addAdress)
 userRoute.post('/addAddress',addressControll.addressPost)
 userRoute.post('/addressRemove',addressControll.removeAddress)
-// orderDetails
 userRoute.get('/orderDetails',userController.orderDetails)
-// userRoute.get('/orderDetailViews',userController.orderDetailViewGet)
 userRoute.get('/orderDetailview',userController.orderDetailView)
 userRoute.post('/userOrderCancel',userController.userOrderCancel)
 userRoute.post('/returnproduct',userController.orderReturn)
-
 // userRoute.get('/invoice_pdf',userController.orderInvoice)
 // userRoute.get('/ins',userController.invoice)
 

@@ -18,10 +18,10 @@ const adminRoute=require('./routes/adminRoute')
 const { connected } = require('process')
  app.use('/',userRoute)
  
-// app.use(express.static('public/user'))
+
 
  app.use('/admin',adminRoute)
-// app.use(express.static('public/admin'))
+
 
 app.listen(3000,()=>{
     console.log('server started...')
