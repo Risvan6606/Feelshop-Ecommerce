@@ -219,6 +219,10 @@ const products=async(req,res)=>{
     const session=req.session.userId;
     const userdata=await user.findOne({_id:session})
     try {
+        if( req.query.search!==undefined&&req.query.category==undefined&&req.query.value==undefined){
+            req.query.value=req.session.values
+            req.query.category=req.session.category
+        }
         await productschema.updateMany({quantity:0},{$set:{status:false}})
         const page = Number(req.query.page) || 1
         const limit =6
@@ -228,6 +232,8 @@ const products=async(req,res)=>{
         let Category = req.query.category || "All"
         let Search = req.query.search || ""
         Search = Search.trim()
+        req.session.values=price
+        req.session.category=Category
         const categoryData = await categorySchema.find({Block : false},{name : 1, _id :0})
         let cat = []
         for(i = 0; i < categoryData.length ; i++){
