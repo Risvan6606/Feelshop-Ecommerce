@@ -5,7 +5,7 @@
 </form>
       <section class="product_section layout_padding">
         <div style="margin-left:1em ;">
-        <div style="position: absolute;top: 15em; text-shadow:5px 5px 10px  #4CAF50; text-decoration: none; color: red;"   id="change">
+        <div style="position: absolute;top: 250px; text-shadow:5px 5px 10px  #4CAF50; text-decoration: none; color: red;"   id="change">
             <a class="" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" style="text-decoration: none;"> <span class="nav-label" style="font-weight: 700;color:  #4CAF50;;">catogary<span class="caret"></span></a>
             <ul class="dropdown-menu">
                <% categoryData.forEach((value,index)=>{ %>
@@ -19,7 +19,7 @@
          </div>
           <div  class="" id="">
                <span style=" font-weight: 900; color: #4CAF50;;; text-shadow: 0px 11px 10px rgba(81,67,21,0.8);">Sort by price</span>
-               <select name="price" id="price" onchange="location ='/product?value='+value+'&category=<%= Category %>&search=<%= Search %>'" style="color: #3e8e41; ">
+               <select name="price" id="price" onchange="location ='/product?value='+value+'&category=<%= Category %>&search=<%= Search %>'" style="color: #3e8e41; border-radius: 20px;border-color: #3e8e41;">
                    <% if(price == "High"){ %>
                        <option value="Low"> Low To High</option>
                        <option value="High" selected>High To Low</option>
@@ -133,7 +133,7 @@
   display: inline-block;
   position: absolute;
   left: 70%;
-  top: 6%;
+  top: 100px;
 }
 
 input[type="text"] {

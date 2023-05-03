@@ -167,7 +167,8 @@ const approvingReturn=async(req,res)=>{
         const product=orderData.product
         const status=orderData.status
         if(status=='Wait'){
-            const totalAmount=orderData.totalAmout-req.session.dis
+            const totalAmount=orderData.totalAmout-orderData.couponDiscound
+            console.log(totalAmount);
             const userId=orderData.userId
             await userSchema.findByIdAndUpdate(userId,{$inc:{wallet:totalAmount}})
         }

@@ -3,23 +3,27 @@
             <!-- Table Start -->
 
             <div class="container-fluid pt-4 px-4">
+              
                 <div class="row g-4">
                     <div class="col-12">
-                        <div class="bg-light rounded h-100 p-4">
+                        <div class="bg-light rounded h-100 p-4" >
                             <h6 class="mb-4">Product list</h6>
-                            <form action="/admin/salesReport">
-                            <div  style="position: absolute;left: 60%;top: 100px; ">
-                                <label style="font-size: 18px; font-weight: bold; margin-right: 10px;" for="birthday">Starting Date:</label><br>
-                                <input style="padding: 8px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;" type="date" id="birthday" name="from">
+                            <form action="/admin/salesReport" class="row">
+                                <div   class="col-md-2" >
+                                    <label style="font-size: 18px; font-weight: bold; margin-right: 10px;" for="birthday" >Starting Date:</label><br>
+                                    <input style="padding: 8px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;" type="date" id="birthday" name="from">
+                                </div>
+                                <div   class="col-md-2" style="margin-left: ">
+                                    <label style="font-size: 18px; font-weight: bold; margin-right: 10px;" for="birthday">Ending Date:</label><br>
+                                    <input style="padding: 8px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;" type="date" id="birthday" name="to">
+                                </div>
+                                <div class="col-md-2" style="padding: 2.5%;">
+                                    <button class="btn btn-info" > <span style="font-family: Arial Unicode MS, Lucida Grande;color: green;" >
+                                        &#10004;
+                                      </span>
+                                    </button>
                             </div>
-                            <div  style="position: absolute;left:80%;top:100px">
-                                <label style="font-size: 18px; font-weight: bold; margin-right: 10px;" for="birthday">Ending Date:</label><br>
-                                <input style="padding: 8px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;" type="date" id="birthday" name="to">
-                            </div>
-                            <button class="btn btn-info" style="position: absolute;left: 93%;top:130px;"> <span style="font-family: Arial Unicode MS, Lucida Grande;color: green;">
-                                &#10004;
-                              </span></button>
-                            </form>
+                                </form>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -30,11 +34,6 @@
                                             <th scope="col">Date</th>
                                             <th scope="col">Amount</th>
                                             <th scope="col">Status</th>
-                                            <!-- <th scope="col">Quantity</th>
-                                            <th scope="col">discount</th>
-                                            <th scope="col">Constroll</th>
-                                            <th scope="col">Edit</th>
-                                            <th scope="col">Remove</th> -->
                                         </tr>
                                     </thead><%let i=0%>
                                     <% orderDetails.forEach((items)=>{ %>
@@ -47,10 +46,7 @@
                                             <td><%=items.Date.toISOString().substring(0,10)%></td>
                                             <td><%=items.totalAmout%></td>
                                             <td><%=items.status%></td>
-                                           
-                                             
                                         </tr>
-                                  
                                     </tbody>
                                     <%})%>
                                     <button class="btn btn-outline-success m-2"><a href="/admin/exportToPdf">Download</a></button>

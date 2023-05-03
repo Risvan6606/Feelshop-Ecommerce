@@ -471,7 +471,7 @@ const orderPlace=async(req,res)=>{
         paidAmount=0
     }
     const dis=req.body.dis
-    req.session.dis=dis
+ 
     const cartData=await cartSchema.findOne({userId:userdata._id})
     const product=cartData.products
     const status=payment ==='COD'?'placed':'pending'
@@ -485,7 +485,9 @@ const orderPlace=async(req,res)=>{
         Date:Date.now(),
         status:status,
         wallet:minusWallet,
-        paid:amount
+        paid:amount,
+        couponDiscound:dis
+        
     })
             await newOrder.save()
 const orderid=newOrder._id

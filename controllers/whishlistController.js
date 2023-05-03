@@ -49,15 +49,20 @@ const wishlist=async(req,res)=>{
         if(session){
        const userdata=await user.findOne({_id:session})
        const wishlistData=await whishListSchema.findOne({user:session}).populate('product.productId')
+      if(wishlistData==null){
+        res.render('cartEmpty',{session,userdata,wishlist:true})
+      }else{
        const products=wishlistData.product
-       if(products.length==0){
+       if(products.length===0){
         res.render('cartEmpty',{session,userdata,wishlist:true})
        }else{
         res.render('Whishlist',{session,userdata,wishlistData,products})
        }
+    }
     }else{
         res.redirect('/login')
     }
+    
     } catch (error) {
         console.log(error.message)
     }

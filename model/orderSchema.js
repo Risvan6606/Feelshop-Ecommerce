@@ -46,7 +46,10 @@ const orderSchma=new mongoose.Schema({
     paymentId:{
         type:String
     },
-
+    couponDiscound:{
+      type:Number,
+      default:0
+    }
 },{
     timestamps:true
 }
