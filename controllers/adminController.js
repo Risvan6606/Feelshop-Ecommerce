@@ -72,7 +72,7 @@ const verifyAdmin=async(req,res)=>{
                 res.render('sign',{message:'please check your password and email'})
             }
         }else{
-            res.render('sign',{message:'please check your mail and hello'})
+            res.render('sign',{message:'please check your mail and'})
         }
     } catch (error) {
         console.log(error.message)
