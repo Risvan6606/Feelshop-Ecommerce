@@ -627,7 +627,7 @@ const orderDetailView=async(req,res)=>{
        const orderId= req.query.orderId
        const orderData=await orderSchema.findById({_id:orderId}).populate("product.productId")
        const product=orderData.product
-       res.render('orderdetailView',{session,userdata,orderData,product})
+       res.render('orderDetailView',{session,userdata,orderData,product})
     } catch (error) {
         console.log(error.message);
     }
