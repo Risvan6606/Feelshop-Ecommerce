@@ -32,7 +32,7 @@ const indexrender=async(req,res)=>{
     const session=req.session.userId;
     const userdata=await user.findOne({_id:session})
     try {
-        const banner=await bannerShema.find()
+        const banner=await bannerShema.find({status:true})
         if(session){
         res.render('index',{session,userdata,banner})
         }else{
